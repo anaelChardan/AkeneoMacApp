@@ -10,6 +10,8 @@
 		037BF5481E129436002E9DE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BF5471E129436002E9DE4 /* AppDelegate.swift */; };
 		037BF54A1E129436002E9DE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 037BF5491E129436002E9DE4 /* Assets.xcassets */; };
 		037BF54D1E129436002E9DE4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037BF54B1E129436002E9DE4 /* MainMenu.xib */; };
+		037BF5551E12E5C5002E9DE4 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BF5541E12E5C5002E9DE4 /* StatusMenuController.swift */; };
+		A7D60FAE2BFFCB95889DBF81 /* Pods_AkeneoMacApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5848434B80166BA5352866 /* Pods_AkeneoMacApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +20,10 @@
 		037BF5491E129436002E9DE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		037BF54C1E129436002E9DE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		037BF54E1E129436002E9DE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		037BF5541E12E5C5002E9DE4 /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
+		6C5848434B80166BA5352866 /* Pods_AkeneoMacApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AkeneoMacApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE51BED00AB460A021DE761D /* Pods-AkeneoMacApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkeneoMacApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AkeneoMacApp/Pods-AkeneoMacApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F56DA043EF1F5CBB5DDD2AFC /* Pods-AkeneoMacApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkeneoMacApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-AkeneoMacApp/Pods-AkeneoMacApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -25,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7D60FAE2BFFCB95889DBF81 /* Pods_AkeneoMacApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,6 +43,8 @@
 			children = (
 				037BF5461E129436002E9DE4 /* AkeneoMacApp */,
 				037BF5451E129436002E9DE4 /* Products */,
+				ECD2C940E356BDFB54DBA64B /* Pods */,
+				FC1E28002A3D8224DFDCB703 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,8 +63,26 @@
 				037BF5491E129436002E9DE4 /* Assets.xcassets */,
 				037BF54B1E129436002E9DE4 /* MainMenu.xib */,
 				037BF54E1E129436002E9DE4 /* Info.plist */,
+				037BF5541E12E5C5002E9DE4 /* StatusMenuController.swift */,
 			);
 			path = AkeneoMacApp;
+			sourceTree = "<group>";
+		};
+		ECD2C940E356BDFB54DBA64B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE51BED00AB460A021DE761D /* Pods-AkeneoMacApp.debug.xcconfig */,
+				F56DA043EF1F5CBB5DDD2AFC /* Pods-AkeneoMacApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FC1E28002A3D8224DFDCB703 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C5848434B80166BA5352866 /* Pods_AkeneoMacApp.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,9 +92,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 037BF5511E129436002E9DE4 /* Build configuration list for PBXNativeTarget "AkeneoMacApp" */;
 			buildPhases = (
+				5FC6DE1B7FFB60657F524292 /* [CP] Check Pods Manifest.lock */,
 				037BF5401E129435002E9DE4 /* Sources */,
 				037BF5411E129435002E9DE4 /* Frameworks */,
 				037BF5421E129435002E9DE4 /* Resources */,
+				225366680B34C5702226835C /* [CP] Embed Pods Frameworks */,
+				69E223C4633B2D8D2C2E3D4B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -124,11 +154,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		225366680B34C5702226835C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AkeneoMacApp/Pods-AkeneoMacApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5FC6DE1B7FFB60657F524292 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		69E223C4633B2D8D2C2E3D4B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AkeneoMacApp/Pods-AkeneoMacApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		037BF5401E129435002E9DE4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				037BF5551E12E5C5002E9DE4 /* StatusMenuController.swift in Sources */,
 				037BF5481E129436002E9DE4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,6 +318,7 @@
 		};
 		037BF5521E129436002E9DE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE51BED00AB460A021DE761D /* Pods-AkeneoMacApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -252,6 +332,7 @@
 		};
 		037BF5531E129436002E9DE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F56DA043EF1F5CBB5DDD2AFC /* Pods-AkeneoMacApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
