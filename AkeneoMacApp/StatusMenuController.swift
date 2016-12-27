@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Alamofire
 
 class StatusMenuController: NSObject {
     @IBOutlet weak var statusMenu: NSMenu!
@@ -30,5 +31,17 @@ class StatusMenuController: NSObject {
         statusMenu.insertItem(titleItem, at: 0)
         statusMenu.insertItem(NSMenuItem.separator(), at: 1)
         statusMenu.insertItem(NSMenuItem(title: "Test", action: nil, keyEquivalent: NSString() as String), at: 2)
+        testInteractDocker()
+    }
+    
+    func testInteractDocker() {
+        Alamofire
+            .request("http://localhost:2375/containers/json")
+            .responseJSON {
+                response in
+//                let json = response as! [: AnyObject]
+                print(response.result.value!)
+                print("coucou")
+        }
     }
 }
