@@ -80,29 +80,32 @@ class StatusMenuController: NSObject {
     }
     
     func addRunningItem(container: Container) {
-        let subMenu = NSMenu(title: "SubMenuRunning_\(container.description)")
-        
-        subMenu.addItem(NSMenuItem(title: "Open in browser", action: nil, keyEquivalent: NSString() as String))
-        subMenu.addItem(NSMenuItem(title: "Initialize", action: nil, keyEquivalent: NSString() as String))
-        subMenu.addItem(NSMenuItem(title: "Shutdown", action: nil, keyEquivalent: NSString() as String))
-        
-        let item = NSMenuItem(title: container.description, action: nil, keyEquivalent: NSString() as String)
-        
-        item.submenu = subMenu
-        statusMenu.addItem(item)
+        addSubMenuAndItems(
+            subMenuTitle: "SubMenuRunning_\(container.description)",
+            subItems: ["Open in browser": nil, "Initialize": nil, "Shutdown": nil],
+            item: NSMenuItem(title: container.description, action: nil, keyEquivalent: NSString() as String)
+        )
         runningContainers[container.description] = container
     }
     
     func addNotRunningContainer(container: String) {
-        let subMenu = NSMenu(title: "SubMenuNotRunning_\(container.description)")
+        addSubMenuAndItems(
+            subMenuTitle: "SubMenuNotRunning_\(container.description)",
+            subItems: ["Boot" : nil],
+            item: NSMenuItem(title: container, action: nil, keyEquivalent: NSString() as String)
+        )
+        notRunningContainers.append(container)
+    }
+    
+    func addSubMenuAndItems(subMenuTitle: String, subItems: [String: Selector?], item: NSMenuItem) {
+        let subMenu = NSMenu(title: subMenuTitle)
         
-        subMenu.addItem(NSMenuItem(title: "Boot", action: nil, keyEquivalent: NSString() as String))
-        
-        let item = NSMenuItem(title: container, action: nil, keyEquivalent: NSString() as String)
+        subItems.forEach { (key: String, value: Selector?) in
+            subMenu.addItem(NSMenuItem(title: key, action: value, keyEquivalent: NSString() as String))
+        }
         
         item.submenu = subMenu
         statusMenu.addItem(item)
-        notRunningContainers.append(container)
     }
     
     func addQuitItem()

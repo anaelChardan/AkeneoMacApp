@@ -30,8 +30,7 @@ class DockerService: NSObject {
                 case .failure(let error):
                     print("Your docker host is not reachable : You must launch docker and use socat to expose the port of docker \(error)")
                 }
-        }
-
+            }
     }
     
     private static func buildURI() -> String {
