@@ -19,14 +19,6 @@
                 <outlet property="statusMenu" destination="eMa-3x-xRT" id="PhF-CJ-PVG"/>
             </connections>
         </customObject>
-        <menu id="eMa-3x-xRT">
-            <items>
-                <menuItem title="Quit AkeneoMac" keyEquivalent="q" id="jAh-Tj-ZbC">
-                    <connections>
-                        <action selector="quitClickedWithSender:" target="Evn-qM-gLj" id="yeC-cQ-OJf"/>
-                    </connections>
-                </menuItem>
-            </items>
-        </menu>
+        <menu id="eMa-3x-xRT"/>
     </objects>
 </document>

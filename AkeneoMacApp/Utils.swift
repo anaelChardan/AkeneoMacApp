@@ -19,9 +19,7 @@ class Utils: NSObject {
         return returnValue
     }
     
-    static func arrayOfStringAnyToArrayOfStringString(arrayToConvert: [[String:AnyObject]]) -> [[String: String]]
-    {
+    static func arrayOfStringAnyToArrayOfStringString(arrayToConvert: [[String:AnyObject]]) -> [[String: String]] {
         return arrayToConvert.map { value in self.StringAnyObjectToStringString(dictionnary: value)}
     }
-
 }

@@ -15,10 +15,10 @@ class Akeneo: NSObject {
     private static let akeneoContainsImage = "carcel/akeneo"
     private static let akeneoDoesNotContainsImage = "behat"
     
-    static func doOnWorkingAkeneoContainers(doOnFiltered: @escaping (([Container]) -> ())) {
+    static func doOnRunningAkeneoContainers(doOnRunningContainer: @escaping (([Container]) -> ())) {
         DockerService.fetchContainers(
             success: { containers in
-                doOnFiltered(self.filterAkeneoWorkingContainer(containers: containers))
+                doOnRunningContainer(self.filterAkeneoWorkingContainer(containers: containers))
             }
         )
     }
@@ -26,9 +26,8 @@ class Akeneo: NSObject {
     static func getAllPIMsInstalled() -> [String]
     {
         var fileList = try! FileManager.default.contentsOfDirectory(atPath: self.akeneoPimsPath)
-        fileList.remove(object: ".DS_Store")
         
-        return fileList
+        return fileList.remove(object: ".DS_Store")
     }
     
     
@@ -38,5 +37,4 @@ class Akeneo: NSObject {
             return container.Image.hasPrefix(self.akeneoContainsImage) && !container.Image.contains(self.akeneoDoesNotContainsImage)
         })
     }
-    
 }

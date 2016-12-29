@@ -21,10 +21,6 @@ class StatusMenuController: NSObject {
         addDynamicItems()
     }
     
-    @IBAction func quitClicked(sender: NSMenuItem) {
-        NSApplication.shared().terminate(self)
-    }
-    
     func addDynamicItems() {
         let titleItem = NSMenuItem(title: "Akeneo Mac", action: nil, keyEquivalent: NSString() as String)
         titleItem.attributedTitle = NSAttributedString(string: "Akeneo Mac", attributes: [NSFontAttributeName: NSFont.systemFont(ofSize: 20), NSForegroundColorAttributeName: NSColor.purple])
@@ -36,14 +32,44 @@ class StatusMenuController: NSObject {
     
     
     func testInteractDocker() {
-        Akeneo.doOnWorkingAkeneoContainers(
-            doOnFiltered : { (filteredContainers: [Container]) in
-                let pimsInstalled: [String] = Akeneo.getAllPIMsInstalled()
-                filteredContainers.forEach({ (container) in
-                    let folder = container.getFolder()
+        Akeneo.doOnRunningAkeneoContainers(
+            doOnRunningContainer : { (runningContainers: [Container]) in
+                
+                let partition = ContainersUtils.partition(containers: runningContainers, folders: Akeneo.getAllPIMsInstalled())
+                
+                self.addTitle(title: "Running PIMs", color: NSColor.green)
+                
+                partition.0.forEach({ (container: Container) in
+                    self.statusMenu.addItem(NSMenuItem(title: container.description, action: nil, keyEquivalent: NSString() as String))
                 })
-                print("plop")
+                
+                self.statusMenu.addItem(NSMenuItem.separator())
+                self.addTitle(title: "Not running PIMs", color: NSColor.red)
+                
+                partition.1.forEach({ (container: String) in
+                    self.statusMenu.addItem(NSMenuItem(title: container, action: nil, keyEquivalent: NSString() as String))
+                })
+                
+                self.addQuitItem()
             }
         )
+    }
+    
+    func addSeparator()
+    {
+        statusMenu.addItem(NSMenuItem.separator())
+    }
+    
+    func addTitle(title: String, color: NSColor)
+    {
+        let item = NSMenuItem(title: title, action: nil, keyEquivalent: NSString() as String)
+        item.attributedTitle = NSAttributedString(string: title, attributes: [NSFontAttributeName: NSFont.systemFont(ofSize: 18), NSForegroundColorAttributeName: color])
+        statusMenu.addItem(item)
+    }
+    
+    func addQuitItem()
+    {
+        addSeparator()
+        statusMenu.addItem(NSMenuItem(title: "Quit Akeneo Mac", action: #selector(NSApplication.shared().terminate), keyEquivalent: "q"))
     }
 }

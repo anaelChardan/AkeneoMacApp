@@ -8,8 +8,7 @@
 
 import Cocoa
 
-//Container represented by StrictTypes
-
+//Container represented by primitive Types wrapped
 class Container: NSObject {
     var Id: String = ""
     var Names: [String] = []
@@ -17,6 +16,10 @@ class Container: NSObject {
     var ImageID: String = ""
     var Command: String = ""
     var Mounts: [[String: String]] = [[:]]
+    
+    override var description: String {
+        return getTerminalFolder()
+    }
     
     init(container: [String: AnyObject]) {
         self.Id = (container["Id"]!) as! String
@@ -28,6 +31,12 @@ class Container: NSObject {
     }
     
     func getFolder() -> String {
-        return "plop"
+        return self.Mounts.first { (mountInfo: [String: String]) -> Bool in
+            return (mountInfo["Destination"]!) == "/home/docker/pim"
+        }!["Source"]!
+    }
+    
+    func getTerminalFolder() -> String {
+        return self.getFolder().components(separatedBy: "/").last!
     }
 }

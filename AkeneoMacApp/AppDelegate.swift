@@ -9,10 +9,12 @@
 import Cocoa
 
 extension Array where Element: Equatable {
-    mutating func remove(object: Element) {
+    mutating func remove(object: Element) -> Array {
         if let index = index(of: object) {
             remove(at: index)
         }
+        
+        return self
     }
 }
 
