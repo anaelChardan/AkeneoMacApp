@@ -8,6 +8,15 @@
 
 import Cocoa
 
+extension Array where Element: Equatable {
+    mutating func remove(object: Element) {
+        if let index = index(of: object) {
+            remove(at: index)
+        }
+    }
+}
+
+//TODO MUST USE A Dependency Injector
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 

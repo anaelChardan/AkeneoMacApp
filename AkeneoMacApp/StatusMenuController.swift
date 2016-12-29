@@ -30,18 +30,20 @@ class StatusMenuController: NSObject {
         titleItem.attributedTitle = NSAttributedString(string: "Akeneo Mac", attributes: [NSFontAttributeName: NSFont.systemFont(ofSize: 20), NSForegroundColorAttributeName: NSColor.purple])
         statusMenu.insertItem(titleItem, at: 0)
         statusMenu.insertItem(NSMenuItem.separator(), at: 1)
-        statusMenu.insertItem(NSMenuItem(title: "Test", action: nil, keyEquivalent: NSString() as String), at: 2)
         testInteractDocker()
     }
     
+    
+    
     func testInteractDocker() {
-        Alamofire
-            .request("http://localhost:2375/containers/json")
-            .responseJSON {
-                response in
-//                let json = response as! [: AnyObject]
-                print(response.result.value!)
-                print("coucou")
-        }
+        Akeneo.doOnWorkingAkeneoContainers(
+            doOnFiltered : { (filteredContainers: [Container]) in
+                let pimsInstalled: [String] = Akeneo.getAllPIMsInstalled()
+                filteredContainers.forEach({ (container) in
+                    let folder = container.getFolder()
+                })
+                print("plop")
+            }
+        )
     }
 }
