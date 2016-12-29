@@ -364,6 +364,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BE51BED00AB460A021DE761D /* Pods-AkeneoMacApp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AkeneoMacApp/Info.plist;
@@ -378,6 +379,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F56DA043EF1F5CBB5DDD2AFC /* Pods-AkeneoMacApp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AkeneoMacApp/Info.plist;
