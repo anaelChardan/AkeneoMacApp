@@ -9,7 +9,9 @@
 import Cocoa
 import Alamofire
 
-class StatusMenuController: NSObject {
+
+
+class StatusMenuController: NSObject, NSApplicationDelegate {
     @IBOutlet weak var statusMenu: NSMenu!
     
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
@@ -28,8 +30,8 @@ class StatusMenuController: NSObject {
     func fillMenu() {
         clear()
         
-        addTitle(title: "Akeneo Mac", color: NSColor.purple, size: 20)
-        addSeparator()
+        statusMenu.addTitle(title: "Akeneo Mac", color: NSColor.purple, size: 20)
+        statusMenu.addSeparator()
         
         analysePIMs()
     }
@@ -48,41 +50,32 @@ class StatusMenuController: NSObject {
                 
                 let partition = ContainersUtils.partition(containers: runningContainers, folders: Akeneo.getAllPIMsInstalled())
                 
-                self.addTitle(title: "Running PIMs", color: NSColor.green)
+                self.statusMenu.addTitle(title: "Running PIMs", color: NSColor.green)
                 
                 partition.0.forEach({ (container: Container) in
                     self.addRunningItem(container: container)
                 })
                 
-                self.statusMenu.addItem(NSMenuItem.separator())
-                self.addTitle(title: "Not running PIMs", color: NSColor.red)
+                self.statusMenu.addSeparator()
+                self.statusMenu.addTitle(title: "Not running PIMs", color: NSColor.red)
                 
                 partition.1.forEach({ (container: String) in
                     self.addNotRunningContainer(container: container)
                 })
                 
-                self.addQuitItem()
+                self.statusMenu.addQuitItem()
             }
         )
-    }
-    
-    func addSeparator()
-    {
-        statusMenu.addItem(NSMenuItem.separator())
-    }
-    
-    func addTitle(title: String, color: NSColor, size: Int = 15)
-    {
-        let item = NSMenuItem(title: title, action: nil, keyEquivalent: NSString() as String)
-        item.attributedTitle = NSAttributedString(string: title, attributes: [NSFontAttributeName: NSFont.systemFont(ofSize: CGFloat(size)), NSForegroundColorAttributeName: color])
-        
-        statusMenu.addItem(item)
     }
     
     func addRunningItem(container: Container) {
         addSubMenuAndItems(
             subMenuTitle: "SubMenuRunning_\(container.description)",
-            subItems: ["Open in browser": nil, "Initialize": nil, "Shutdown": nil],
+            subItems: [
+                ("Open in browser", RunningOperation.openBrower(container: container)),
+                ("Initialize", nil),
+                ("Shutdown", nil)
+            ],
             item: NSMenuItem(title: container.description, action: nil, keyEquivalent: NSString() as String)
         )
         runningContainers[container.description] = container
@@ -91,26 +84,29 @@ class StatusMenuController: NSObject {
     func addNotRunningContainer(container: String) {
         addSubMenuAndItems(
             subMenuTitle: "SubMenuNotRunning_\(container.description)",
-            subItems: ["Boot" : nil],
+            subItems: [("Boot", nil)],
             item: NSMenuItem(title: container, action: nil, keyEquivalent: NSString() as String)
         )
         notRunningContainers.append(container)
     }
     
-    func addSubMenuAndItems(subMenuTitle: String, subItems: [String: Selector?], item: NSMenuItem) {
+    func addSubMenuAndItems(subMenuTitle: String, subItems: [(title: String, representedObject: Any?)], item: NSMenuItem) {
         let subMenu = NSMenu(title: subMenuTitle)
         
-        subItems.forEach { (key: String, value: Selector?) in
-            subMenu.addItem(NSMenuItem(title: key, action: value, keyEquivalent: NSString() as String))
+        subItems.forEach { (title: String, representedObject: Any?) in
+            let subMenuItem = NSMenuItem()
+            subMenuItem.representedObject = representedObject
+            subMenuItem.title = title
+            subMenuItem.target = self
+            subMenuItem.action = #selector(self.handleRunningOperation(_:))
+            subMenu.addItem(subMenuItem)
         }
         
         item.submenu = subMenu
         statusMenu.addItem(item)
     }
     
-    func addQuitItem()
-    {
-        addSeparator()
-        statusMenu.addItem(NSMenuItem(title: "Quit Akeneo Mac", action: #selector(NSApplication.shared().terminate), keyEquivalent: "q"))
+    func handleRunningOperation(_ sender: NSMenuItem) {
+        (sender.representedObject as! RunningOperation).process()
     }
 }

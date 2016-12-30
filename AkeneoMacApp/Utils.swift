@@ -8,18 +8,55 @@
 
 import Cocoa
 
-class Utils: NSObject {
-    static func StringAnyObjectToStringString(dictionnary: [String: AnyObject]) -> [String: String] {
+extension Array where Element: Equatable {
+    mutating func remove(object: Element) -> Array {
+        if let index = index(of: object) {
+            remove(at: index)
+        }
+        
+        return self
+    }
+}
+
+extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
+    func toStringString() -> [String: String]
+    {
         var returnValue: [String: String] = [:]
         
-        for (n, l) in dictionnary {
-            returnValue[n] = String(describing: l)
+        for (n, l) in self {
+            let key = n as! String
+            returnValue[key] = String(describing: l)
         }
         
         return returnValue
     }
+}
+
+extension Sequence where Iterator.Element == [String:AnyObject] {
+    func toStringStringElementArray() -> [[String: String]] {
+        return self.map { value in return value.toStringString() }
+    }
+}
+
+extension NSMenu {
+    func addSeparator() {
+        self.addItem(NSMenuItem.separator())
+    }
     
-    static func arrayOfStringAnyToArrayOfStringString(arrayToConvert: [[String:AnyObject]]) -> [[String: String]] {
-        return arrayToConvert.map { value in self.StringAnyObjectToStringString(dictionnary: value)}
+    func addTitle(title: String, color: NSColor, size: Int = 15) {
+        let item = NSMenuItem(title: title, action: nil, keyEquivalent: NSString() as String)
+        item.attributedTitle = NSAttributedString(string: title, attributes: [NSFontAttributeName: NSFont.systemFont(ofSize: CGFloat(size)), NSForegroundColorAttributeName: color])
+        self.addItem(item)
+    }
+    
+    func addQuitItem() {
+        self.addSeparator()
+        self.addItem(NSMenuItem(title: "Quit Akeneo Mac", action: #selector(NSApplication.shared().terminate), keyEquivalent: "q"))
+    }
+}
+
+extension String {
+    func lastPartAfter(separatedBy: String) -> String? {
+        return self.components(separatedBy: separatedBy).last
     }
 }

@@ -16,6 +16,7 @@ class Container: NSObject {
     var ImageID: String = ""
     var Command: String = ""
     var Mounts: [[String: String]] = [[:]]
+    var Ports: [[String: String]] = [[:]]
     
     override var description: String {
         return getTerminalFolder()
@@ -27,7 +28,8 @@ class Container: NSObject {
         self.Image = (container["Image"]) as! String
         self.ImageID = (container["ImageID"]) as! String
         self.Command = (container["Command"]) as! String
-        self.Mounts = Utils.arrayOfStringAnyToArrayOfStringString(arrayToConvert: (container["Mounts"]!) as! [[String: AnyObject]])
+        self.Mounts = ((container["Mounts"]!) as! [[String: AnyObject]]).toStringStringElementArray()
+        self.Ports = ((container["Ports"]!) as! [[String: AnyObject]]).toStringStringElementArray()
     }
     
     func getFolder() -> String {
@@ -37,6 +39,14 @@ class Container: NSObject {
     }
     
     func getTerminalFolder() -> String {
-        return self.getFolder().components(separatedBy: "/").last!
+        return getFolder().lastPartAfter(separatedBy: "/")!
+    }
+    
+    func getPublicPort(privatePort: String) -> String
+    {
+        return self.Ports.first { (currentPort: [String: String]) -> Bool in
+            return (currentPort["PrivatePort"]!) == privatePort
+            
+        }!["PublicPort"]!
     }
 }

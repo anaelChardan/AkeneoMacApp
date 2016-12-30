@@ -8,16 +8,6 @@
 
 import Cocoa
 
-extension Array where Element: Equatable {
-    mutating func remove(object: Element) -> Array {
-        if let index = index(of: object) {
-            remove(at: index)
-        }
-        
-        return self
-    }
-}
-
 //TODO MUST USE A Dependency Injector
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -27,6 +17,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
+    }
+    
+    func test(_ sender: NSMenuItem)
+    {
+        print("coucou")
+    }
+    
+    func handleRunningOperation(_ sender: NSMenuItem?, operation: String?) {
+        
+        print("coucou")
     }
 }
 
