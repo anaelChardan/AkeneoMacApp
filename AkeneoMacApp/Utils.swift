@@ -25,7 +25,7 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
         
         for (n, l) in self {
             let key = n as! String
-            returnValue[key] = String(describing: l)
+            returnValue[key] = l is NSNull ? "" : String(describing: l)
         }
         
         return returnValue
