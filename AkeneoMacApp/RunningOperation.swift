@@ -10,11 +10,15 @@ import Foundation
 
 enum RunningOperation {
     case openBrower(container: Container)
+    case openBehatBrowser(container: Container)
     
     func process() {
         switch self {
             case let .openBrower(container):
                 AkeneoContainer(container: container).open()
+        case let .openBehatBrowser(container):
+                AkeneoContainer(container: container).openBehat()
+            
         }
     }
 }

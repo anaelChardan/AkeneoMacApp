@@ -18,6 +18,8 @@
 		037BF54A1E129436002E9DE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 037BF5491E129436002E9DE4 /* Assets.xcassets */; };
 		037BF54D1E129436002E9DE4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037BF54B1E129436002E9DE4 /* MainMenu.xib */; };
 		037BF5551E12E5C5002E9DE4 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BF5541E12E5C5002E9DE4 /* StatusMenuController.swift */; };
+		03CA192C1E16C66E00C8BB2E /* DockerComposeCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA192B1E16C66E00C8BB2E /* DockerComposeCluster.swift */; };
+		03CA192E1E16D7F700C8BB2E /* ClusterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA192D1E16D7F700C8BB2E /* ClusterFactory.swift */; };
 		A7D60FAE2BFFCB95889DBF81 /* Pods_AkeneoMacApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5848434B80166BA5352866 /* Pods_AkeneoMacApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		037BF54C1E129436002E9DE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		037BF54E1E129436002E9DE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		037BF5541E12E5C5002E9DE4 /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
+		03CA192B1E16C66E00C8BB2E /* DockerComposeCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockerComposeCluster.swift; sourceTree = "<group>"; };
+		03CA192D1E16D7F700C8BB2E /* ClusterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterFactory.swift; sourceTree = "<group>"; };
 		6C5848434B80166BA5352866 /* Pods_AkeneoMacApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AkeneoMacApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE51BED00AB460A021DE761D /* Pods-AkeneoMacApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkeneoMacApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AkeneoMacApp/Pods-AkeneoMacApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F56DA043EF1F5CBB5DDD2AFC /* Pods-AkeneoMacApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkeneoMacApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-AkeneoMacApp/Pods-AkeneoMacApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				030F80B31E13DCC3000E1559 /* DockerService.swift */,
 				036F21641E1547C800109C0E /* Container.swift */,
 				0306259E1E157CE700660F58 /* ContainersUtils.swift */,
+				03CA192B1E16C66E00C8BB2E /* DockerComposeCluster.swift */,
+				03CA192D1E16D7F700C8BB2E /* ClusterFactory.swift */,
 			);
 			name = Docker;
 			sourceTree = "<group>";
@@ -263,12 +269,14 @@
 				0306259F1E157CE700660F58 /* ContainersUtils.swift in Sources */,
 				036F21631E153E6300109C0E /* Utils.swift in Sources */,
 				036F21651E1547C800109C0E /* Container.swift in Sources */,
+				03CA192C1E16C66E00C8BB2E /* DockerComposeCluster.swift in Sources */,
 				030625A61E15B37600660F58 /* RunningOperation.swift in Sources */,
 				030F80B41E13DCC3000E1559 /* DockerService.swift in Sources */,
 				037BF5551E12E5C5002E9DE4 /* StatusMenuController.swift in Sources */,
 				032A679E1E14690C006A1E4A /* Akeneo.swift in Sources */,
 				030625A11E15A9F700660F58 /* AkeneoContainer.swift in Sources */,
 				037BF5481E129436002E9DE4 /* AppDelegate.swift in Sources */,
+				03CA192E1E16D7F700C8BB2E /* ClusterFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

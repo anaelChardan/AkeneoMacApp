@@ -9,8 +9,6 @@
 import Cocoa
 import Alamofire
 
-
-
 class StatusMenuController: NSObject, NSApplicationDelegate {
     @IBOutlet weak var statusMenu: NSMenu!
     
@@ -71,39 +69,33 @@ class StatusMenuController: NSObject, NSApplicationDelegate {
     func addRunningItem(container: Container) {
         addSubMenuAndItems(
             subMenuTitle: "SubMenuRunning_\(container.description)",
+            itemTitle: container.description,
             subItems: [
                 ("Open in browser", RunningOperation.openBrower(container: container)),
                 ("Initialize", nil),
                 ("Shutdown", nil)
-            ],
-            item: NSMenuItem(title: container.description, action: nil, keyEquivalent: NSString() as String)
+            ]
         )
-        runningContainers[container.description] = container
     }
     
     func addNotRunningContainer(container: String) {
         addSubMenuAndItems(
             subMenuTitle: "SubMenuNotRunning_\(container.description)",
-            subItems: [("Boot", nil)],
-            item: NSMenuItem(title: container, action: nil, keyEquivalent: NSString() as String)
+            itemTitle: container,
+            subItems: [("Boot", nil)]
         )
         notRunningContainers.append(container)
     }
     
-    func addSubMenuAndItems(subMenuTitle: String, subItems: [(title: String, representedObject: Any?)], item: NSMenuItem) {
-        let subMenu = NSMenu(title: subMenuTitle)
-        
-        subItems.forEach { (title: String, representedObject: Any?) in
-            let subMenuItem = NSMenuItem()
-            subMenuItem.representedObject = representedObject
-            subMenuItem.title = title
-            subMenuItem.target = self
-            subMenuItem.action = #selector(self.handleRunningOperation(_:))
-            subMenu.addItem(subMenuItem)
-        }
-        
-        item.submenu = subMenu
-        statusMenu.addItem(item)
+    func addSubMenuAndItems(subMenuTitle: String, itemTitle: String, subItems: [(title: String, representedObject: Any?)])
+    {
+        statusMenu.addSubMenuAndItems(
+            subMenuTitle: subMenuTitle,
+            subItems: subItems,
+            item: NSMenuItem(title: itemTitle, action: nil, keyEquivalent: NSString() as String),
+            target: self,
+            action: #selector(self.handleRunningOperation(_:))
+        )
     }
     
     func handleRunningOperation(_ sender: NSMenuItem) {

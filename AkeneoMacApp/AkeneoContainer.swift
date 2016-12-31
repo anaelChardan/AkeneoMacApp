@@ -16,11 +16,20 @@ class AkeneoContainer: NSObject {
     }
     
     func open() {
-        NSWorkspace.shared().open(URL(string: "http://localhost:\(self.container.getPublicPort(privatePort: "80"))")!)
+        self.container.getMainNetwork()
+//        NSWorkspace.shared().open(URL(string: "http://localhost:\(self.container.getPublicPort(privatePort: "80"))")!)
     }
     
-    func initalize() {
+    func openBehat() {
+        self.container.getMainNetwork()
+    }
+    
+    func initialize() {
         print("initalize")
+    }
+    
+    func initializeBehat() {
+        print("initalize behat")
     }
     
     func shutdown() {

@@ -43,11 +43,33 @@ extension NSMenu {
         self.addItem(NSMenuItem.separator())
     }
     
-    func addTitle(title: String, color: NSColor, size: Int = 15) {
+    func addTitle(title: String, color: NSColor, size: Int = 15, image: NSImage? = nil) {
         let item = NSMenuItem(title: title, action: nil, keyEquivalent: NSString() as String)
         item.attributedTitle = NSAttributedString(string: title, attributes: [NSFontAttributeName: NSFont.systemFont(ofSize: CGFloat(size)), NSForegroundColorAttributeName: color])
+        
+        if let data = image {
+            item.image = data
+        }
+        
         self.addItem(item)
     }
+    
+    func addSubMenuAndItems(subMenuTitle: String, subItems: [(title: String, representedObject: Any?)], item: NSMenuItem, target: AnyObject?, action: Selector?) {
+        let subMenu = NSMenu(title: subMenuTitle)
+        
+        subItems.forEach { (title: String, representedObject: Any?) in
+            let subMenuItem = NSMenuItem()
+            subMenuItem.representedObject = representedObject
+            subMenuItem.title = title
+            subMenuItem.target = target
+            subMenuItem.action = action
+            subMenu.addItem(subMenuItem)
+        }
+        
+        item.submenu = subMenu
+        self.addItem(item)
+    }
+
     
     func addQuitItem() {
         self.addSeparator()

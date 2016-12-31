@@ -64,7 +64,11 @@ class Container: NSObject {
     {
         return self.Ports.first { (currentPort: [String: String]) -> Bool in
             return (currentPort["PrivatePort"]!) == privatePort
-            
         }!["PublicPort"]!
+    }
+    
+    func getMainNetwork() -> String
+    {
+        return (self.NetworkSettings?["Networks"]?.first!.key)!
     }
 }
