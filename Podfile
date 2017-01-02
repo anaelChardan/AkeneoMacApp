@@ -3,5 +3,5 @@ platform :osx, '10.11'
 target 'AkeneoMacApp' do
   use_frameworks!
 
-  pod 'Alamofire', '~> 4.0'
+  pod 'AlamofireJsonToObjects', '~> 2.4'
 end

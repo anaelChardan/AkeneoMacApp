@@ -10,11 +10,11 @@ import Cocoa
 
 class Akeneo: NSObject {
     //TODO: Must be parametrable
-    private static let akeneoPimsPath = "/Users/Ananas/Documents/Workspace/Akeneo/PIM/installed_pims"
+    private static let akeneoPimsPath = "/Users/clementgarbay/dev/Akeneo/PIM/installed_pims"
     private static let akeneoMobyVMPath = "/Workspace/Akeneo/PIM/installed_pims"
     private static let akeneoContainsImage = "carcel/akeneo"
     private static let akeneoDoesNotContainsImage = "behat"
-    
+     
     static func doOnRunningAkeneoContainers(doOnRunningContainer: @escaping (([Container]) -> ())) {
         DockerService.fetchContainers(
             success: { containers in
@@ -34,7 +34,7 @@ class Akeneo: NSObject {
     static func filterAkeneoWorkingContainer(containers: [Container]) -> [Container]
     {
         return containers.filter({ (container: Container) in
-            return container.Image.hasPrefix(self.akeneoContainsImage) && !container.Image.contains(self.akeneoDoesNotContainsImage)
+            return container.image!.hasPrefix(self.akeneoContainsImage) && !container.image!.contains(self.akeneoDoesNotContainsImage)
         })
     }
 }

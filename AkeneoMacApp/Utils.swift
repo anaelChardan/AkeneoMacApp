@@ -18,26 +18,6 @@ extension Array where Element: Equatable {
     }
 }
 
-extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
-    func toStringString() -> [String: String]
-    {
-        var returnValue: [String: String] = [:]
-        
-        for (n, l) in self {
-            let key = n as! String
-            returnValue[key] = l is NSNull ? "" : String(describing: l)
-        }
-        
-        return returnValue
-    }
-}
-
-extension Sequence where Iterator.Element == [String:AnyObject] {
-    func toStringStringElementArray() -> [[String: String]] {
-        return self.map { value in return value.toStringString() }
-    }
-}
-
 extension NSMenu {
     func addSeparator() {
         self.addItem(NSMenuItem.separator())

@@ -10,11 +10,10 @@ import Cocoa
 
 class ContainersUtils: NSObject {
 
-    static func partition(containers: [Container], folders: [String]) -> (containersRunning: [Container], containersNotRunning: [String])
-    {
+    static func partition(containers: [Container], folders: [String]) -> (containersRunning: [Container], containersNotRunning: [String]) {
         let containerNotRunning = folders.filter({ (currentPath: String) -> Bool in
             return !containers.contains(where: { (runningContainer: Container) -> Bool in
-                return runningContainer.getTerminalFolder() == currentPath
+                return runningContainer.pimFolder == currentPath
             })
         })
         

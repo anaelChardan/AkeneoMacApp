@@ -7,68 +7,54 @@
 //
 
 import Cocoa
+import EVReflection
 
-//Container represented by primitive Types wrapped
-class Container: NSObject {
-    var Id: String = ""
-    var Names: [String] = []
-    var Image: String = ""
-    var ImageID: String = ""
-    var Command: String = ""
-    var Mounts: [[String: String]] = [[:]]
-    var Ports: [[String: String]] = [[:]]
-    var NetworkSettings: [String:[String:[String:String]]]? = nil
-
-    override var description: String {
-        return getTerminalFolder()
-    }
-    
-    init(container: [String: AnyObject]) {
-        super.init()
-        
-        self.Id = (container["Id"]!) as! String
-        self.Names = (container["Names"]) as! [String]
-        self.Image = (container["Image"]) as! String
-        self.ImageID = (container["ImageID"]) as! String
-        self.Command = (container["Command"]) as! String
-        self.Mounts = ((container["Mounts"]!) as! [[String: AnyObject]]).toStringStringElementArray()
-        self.Ports = ((container["Ports"]!) as! [[String: AnyObject]]).toStringStringElementArray()
-        self.setNetwork(preConvertedArray: ((container["NetworkSettings"]!) as! [String: [String: [String: AnyObject]]]))
-    }
-    
-    private func setNetwork(preConvertedArray: [String: [String: [String: AnyObject]]])
-    {
-        var preConvertedArrayCopy: [String: [String: [String: String]]] = [:]
-        
-        for (key, value) in preConvertedArray {
-            preConvertedArrayCopy[key] = [:]
-            for (secondLevelKey, secondLevelValue) in value {
-                preConvertedArrayCopy[key]?[secondLevelKey] = secondLevelValue.toStringString()
+class Container: EVObject {
+    var id: String?
+    var names: [String]?
+    var image: String?
+    var imageId: String?
+    var command: String?
+    var ports: [ContainerPort]? = []
+    var state: String?
+    var status: String?
+    var networkSettings: ContainerNetworkSettings?
+    var mounts: [ContainerMount]?
+    var pimFolder: String? {
+        get {
+            if let mounts = self.mounts {
+                let sourceFolder = mounts.first { (mount: ContainerMount) -> Bool in
+                    return mount.destination! == "/home/docker/pim"
+                    }?.source
+                return sourceFolder?.lastPartAfter(separatedBy: "/")
             }
+            return nil
         }
-        
-        self.NetworkSettings = preConvertedArrayCopy
+    }
+
+    override public func propertyMapping() -> [(String?, String?)] {
+        return [
+            ("imageId","ImageID")
+        ]
     }
     
-    func getFolder() -> String {
-        return self.Mounts.first { (mountInfo: [String: String]) -> Bool in
-            return (mountInfo["Destination"]!) == "/home/docker/pim"
-        }!["Source"]!
+    override var description: String {
+        return self.pimFolder ?? ""
     }
     
-    func getTerminalFolder() -> String {
-        return getFolder().lastPartAfter(separatedBy: "/")!
+    func getPublicPort(privatePort: NSNumber) -> NSNumber? {
+        if let ports = self.ports {
+            return ports.first { (currentPort: ContainerPort) -> Bool in
+                return currentPort.privatePort == privatePort
+            }?.publicPort
+        }
+        return nil
     }
     
-    func getPublicPort(privatePort: String) -> String
-    {
-        return self.Ports.first { (currentPort: [String: String]) -> Bool in
-            return (currentPort["PrivatePort"]!) == privatePort
-        }!["PublicPort"]!
-    }
-    
-    func getMainNetwork() -> String
-    {
-        return (self.NetworkSettings?["Networks"]?.first!.key)!
+    func getMainNetwork() -> String? {
+        if let networkSettings = self.networkSettings {
+            return networkSettings.networks.first?.name
+        }
+        return nil
     }
 }
