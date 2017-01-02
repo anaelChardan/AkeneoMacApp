@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Alamofire
 
 extension Array where Element: Equatable {
     mutating func remove(object: Element) -> Array {

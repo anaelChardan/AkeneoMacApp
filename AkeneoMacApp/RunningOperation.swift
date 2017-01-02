@@ -10,6 +10,8 @@ import Foundation
 
 enum RunningOperation {
     case openBrower(container: Container)
+    
+    //TODO To do that, must create a cluster containing the behat container (so by folder)
     case openBehatBrowser(container: Container)
     
     func process() {
