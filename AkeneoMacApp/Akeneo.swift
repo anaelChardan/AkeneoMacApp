@@ -9,32 +9,31 @@
 import Cocoa
 
 class Akeneo: NSObject {
-    //TODO: Must be parametrable
-    private static let akeneoPimsPath = "/Users/clementgarbay/dev/Akeneo/PIM/installed_pims"
-    private static let akeneoMobyVMPath = "/Workspace/Akeneo/PIM/installed_pims"
-    private static let akeneoContainsImage = "carcel/akeneo"
-    private static let akeneoDoesNotContainsImage = "behat"
-     
     static func doOnRunningAkeneoContainers(doOnRunningContainer: @escaping (([Container]) -> ())) {
         DockerService.fetchContainers(
             success: { containers in
-                doOnRunningContainer(self.filterAkeneoWorkingContainer(containers: containers))
+                if let akeneoWorkingContainer = filterAkeneoWorkingContainer(containers: containers) {
+                    doOnRunningContainer(akeneoWorkingContainer)
+                }
             }
         )
     }
     
-    static func getAllPIMsInstalled() -> [String]
-    {
-        var fileList = try! FileManager.default.contentsOfDirectory(atPath: self.akeneoPimsPath)
+    static func getAllPIMsInstalled() -> [String]? {
+        guard let akeneoPimsPath = SettingsManager.get(key: "akeneoPimsPath") as? String else { return .none }
+        
+        var fileList = try! FileManager.default.contentsOfDirectory(atPath: akeneoPimsPath)
         
         return fileList.remove(object: ".DS_Store")
     }
     
     
-    static func filterAkeneoWorkingContainer(containers: [Container]) -> [Container]
-    {
+    static func filterAkeneoWorkingContainer(containers: [Container]) -> [Container]? {
+        guard let akeneoContainsImage = SettingsManager.get(key: "akeneoContainsImage") as? String else { return .none }
+        guard let akeneoDoesNotContainsImage = SettingsManager.get(key: "akeneoDoesNotContainsImage") as? String else { return .none }
+        
         return containers.filter({ (container: Container) in
-            return container.image!.hasPrefix(self.akeneoContainsImage) && !container.image!.contains(self.akeneoDoesNotContainsImage)
+            return container.image!.hasPrefix(akeneoContainsImage) && !container.image!.contains(akeneoDoesNotContainsImage)
         })
     }
 }

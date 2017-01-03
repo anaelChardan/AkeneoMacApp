@@ -48,13 +48,13 @@ class Container: EVObject {
                 return currentPort.privatePort == privatePort
             }?.publicPort
         }
-        return nil
+        return .none
     }
     
     func getMainNetwork() -> String? {
         if let networkSettings = self.networkSettings {
             return networkSettings.networks.first?.name
         }
-        return nil
+        return .none
     }
 }

@@ -24,6 +24,9 @@
 		7CDD28371E1A613500AE6D2E /* ContainerPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDD28361E1A613500AE6D2E /* ContainerPort.swift */; };
 		7CDD28391E1A64FB00AE6D2E /* ContainerNetworkSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDD28381E1A64FB00AE6D2E /* ContainerNetworkSettings.swift */; };
 		7CDD283C1E1A65AE00AE6D2E /* ContainerNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDD283B1E1A65AE00AE6D2E /* ContainerNetwork.swift */; };
+		7CE6AC251E1BA5D20017B2BA /* PlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE6AC241E1BA5D20017B2BA /* PlistManager.swift */; };
+		7CE6AC271E1BAA8A0017B2BA /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CE6AC261E1BAA8A0017B2BA /* Settings.plist */; };
+		7CE6AC2D1E1BE1350017B2BA /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE6AC2C1E1BE1350017B2BA /* SettingsManager.swift */; };
 		A7D60FAE2BFFCB95889DBF81 /* Pods_AkeneoMacApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5848434B80166BA5352866 /* Pods_AkeneoMacApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +51,9 @@
 		7CDD28361E1A613500AE6D2E /* ContainerPort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerPort.swift; sourceTree = "<group>"; };
 		7CDD28381E1A64FB00AE6D2E /* ContainerNetworkSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerNetworkSettings.swift; sourceTree = "<group>"; };
 		7CDD283B1E1A65AE00AE6D2E /* ContainerNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerNetwork.swift; sourceTree = "<group>"; };
+		7CE6AC241E1BA5D20017B2BA /* PlistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
+		7CE6AC261E1BAA8A0017B2BA /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		7CE6AC2C1E1BE1350017B2BA /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		BE51BED00AB460A021DE761D /* Pods-AkeneoMacApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkeneoMacApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AkeneoMacApp/Pods-AkeneoMacApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F56DA043EF1F5CBB5DDD2AFC /* Pods-AkeneoMacApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkeneoMacApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-AkeneoMacApp/Pods-AkeneoMacApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				036F21621E153E6300109C0E /* Utils.swift */,
+				7CE6AC241E1BA5D20017B2BA /* PlistManager.swift */,
+				7CE6AC2C1E1BE1350017B2BA /* SettingsManager.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -131,6 +139,7 @@
 				037BF54B1E129436002E9DE4 /* MainMenu.xib */,
 				037BF54E1E129436002E9DE4 /* Info.plist */,
 				037BF5541E12E5C5002E9DE4 /* StatusMenuController.swift */,
+				7CE6AC261E1BAA8A0017B2BA /* Settings.plist */,
 			);
 			path = AkeneoMacApp;
 			sourceTree = "<group>";
@@ -228,6 +237,7 @@
 			files = (
 				037BF54A1E129436002E9DE4 /* Assets.xcassets in Resources */,
 				037BF54D1E129436002E9DE4 /* MainMenu.xib in Resources */,
+				7CE6AC271E1BAA8A0017B2BA /* Settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,10 +300,12 @@
 				7CDD28351E1A60B400AE6D2E /* ContainerMount.swift in Sources */,
 				036F21631E153E6300109C0E /* Utils.swift in Sources */,
 				7CDD28371E1A613500AE6D2E /* ContainerPort.swift in Sources */,
+				7CE6AC251E1BA5D20017B2BA /* PlistManager.swift in Sources */,
 				036F21651E1547C800109C0E /* Container.swift in Sources */,
 				7CDD28391E1A64FB00AE6D2E /* ContainerNetworkSettings.swift in Sources */,
 				03CA192C1E16C66E00C8BB2E /* DockerComposeCluster.swift in Sources */,
 				7CDD283C1E1A65AE00AE6D2E /* ContainerNetwork.swift in Sources */,
+				7CE6AC2D1E1BE1350017B2BA /* SettingsManager.swift in Sources */,
 				030625A61E15B37600660F58 /* RunningOperation.swift in Sources */,
 				030F80B41E13DCC3000E1559 /* DockerService.swift in Sources */,
 				037BF5551E12E5C5002E9DE4 /* StatusMenuController.swift in Sources */,

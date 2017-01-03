@@ -45,23 +45,24 @@ class StatusMenuController: NSObject, NSApplicationDelegate {
     func analysePIMs() {
         Akeneo.doOnRunningAkeneoContainers(
             doOnRunningContainer : { (runningContainers: [Container]) in
-                
-                let partition = ContainersUtils.partition(containers: runningContainers, folders: Akeneo.getAllPIMsInstalled())
-                
-                self.statusMenu.addTitle(title: "Running PIMs", color: NSColor.green)
-                
-                partition.0.forEach({ (container: Container) in
-                    self.addRunningItem(container: container)
-                })
-                
-                self.statusMenu.addSeparator()
-                self.statusMenu.addTitle(title: "Not running PIMs", color: NSColor.red)
-                
-                partition.1.forEach({ (container: String) in
-                    self.addNotRunningContainer(container: container)
-                })
-                
-                self.statusMenu.addQuitItem()
+                if let allPIMsInstalled = Akeneo.getAllPIMsInstalled() {
+                    let partition = ContainersUtils.partition(containers: runningContainers, folders: allPIMsInstalled)
+                    
+                    self.statusMenu.addTitle(title: "Running PIMs", color: NSColor.green)
+                    
+                    partition.0.forEach({ (container: Container) in
+                        self.addRunningItem(container: container)
+                    })
+                    
+                    self.statusMenu.addSeparator()
+                    self.statusMenu.addTitle(title: "Not running PIMs", color: NSColor.red)
+                    
+                    partition.1.forEach({ (container: String) in
+                        self.addNotRunningContainer(container: container)
+                    })
+                    
+                    self.statusMenu.addQuitItem()
+                }
             }
         )
     }

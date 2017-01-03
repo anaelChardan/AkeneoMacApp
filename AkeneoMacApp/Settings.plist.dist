@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>dockerUrl</key>
+	<string>http://localhost</string>
+	<key>dockerPort</key>
+	<string>2375</string>
+	<key>akeneoDoesNotContainsImage</key>
+	<string>behat</string>
+	<key>akeneoContainsImage</key>
+	<string>carcel/akeneo</string>
+	<key>akeneoMobyVMPath</key>
+	<string>/Workspace/Akeneo/PIM/installed_pims</string>
+	<key>akeneoPimsPath</key>
+	<string>/Akeneo/PIM/installed_pims</string>
+</dict>
+</plist>
