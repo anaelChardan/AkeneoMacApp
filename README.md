@@ -20,12 +20,17 @@ Feel free to give your ideas :-)
 This tool is in progress, so for the moment it missing some views to configures your paths and your preferences
 
 In order to get it working for the moment you must:
-- Configure your paths on AkeneoMacApp/Akeneo/Akeneo.swift
-- Your port on AkeneoMacApp/Docker/DockerService
+
+- Configure your settings
+```
+cp AkeneoMacApp/Settings.plist.dist AkeneoMacApp/Settings.plist
+```
+- Configure your port on `AkeneoMacApp/Docker/DockerService`
 - Launch Docker
 - Launch manually socat to expose the TCP port of docker 
-
-```$ brew install socat && socat TCP-LISTEN:2375,reuseaddr,fork,bind=localhost UNIX-CONNECT:/var/run/docker.sock```
+```
+brew install socat && socat TCP-LISTEN:2375,reuseaddr,fork,bind=localhost UNIX-CONNECT:/var/run/docker.sock
+```
 
 ## Current status
 
