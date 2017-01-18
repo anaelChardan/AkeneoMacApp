@@ -45,7 +45,12 @@ class StatusMenuController: NSObject, NSApplicationDelegate {
     func analysePIMs() {
         Akeneo.doOnRunningAkeneoContainers(
             doOnRunningContainer : { (runningContainers: [Container]) in
-                if let allPIMsInstalled = Akeneo.getAllPIMsInstalled() {
+                
+                guard let allPimsInstalled = Akeneo.getAllPIMsInstalled() else {
+                    
+                }
+                
+               
                     let partition = ContainersUtils.partition(containers: runningContainers, folders: allPIMsInstalled)
                     
                     self.statusMenu.addTitle(title: "Running PIMs", color: NSColor.green)
@@ -62,7 +67,8 @@ class StatusMenuController: NSObject, NSApplicationDelegate {
                     })
                     
                     self.statusMenu.addQuitItem()
-                }
+                
+                
             }
         )
     }
