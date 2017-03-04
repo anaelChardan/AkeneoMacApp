@@ -20,12 +20,12 @@ class Container: EVObject {
     var status: String?
     var networkSettings: ContainerNetworkSettings?
     var mounts: [ContainerMount]?
+    
     var pimFolder: String? {
         get {
             if let mounts = self.mounts {
-                let sourceFolder = mounts.first { (mount: ContainerMount) -> Bool in
-                    return mount.destination! == "/home/docker/pim"
-                    }?.source
+                let sourceFolder = mounts.first { (mount: ContainerMount) -> Bool in return mount.destination! == "/home/docker/symfony" }?.source
+                
                 return sourceFolder?.lastPartAfter(separatedBy: "/")
             }
             return nil

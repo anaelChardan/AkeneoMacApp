@@ -9,7 +9,7 @@
 import Cocoa
 
 class Akeneo: NSObject {
-    static func doOnRunningAkeneoContainers(doOnRunningContainer: @escaping (([Container]) -> ())) {
+    static func doOnAkeneoRelatedContainers(doOnRunningContainer: @escaping (([Container]) -> ())) {
         DockerService.fetchContainers(
             success: { containers in
                 if let akeneoWorkingContainer = filterAkeneoWorkingContainer(containers: containers) {
@@ -28,12 +28,11 @@ class Akeneo: NSObject {
     }
     
     
-    static func filterAkeneoWorkingContainer(containers: [Container]) -> [Container]? {
-        guard let akeneoContainsImage = SettingsManager.get(key: "akeneoContainsImage") as? String else { return .none }
-        guard let akeneoDoesNotContainsImage = SettingsManager.get(key: "akeneoDoesNotContainsImage") as? String else { return .none }
-        
+    private static func filterAkeneoWorkingContainer(containers: [Container]) -> [Container]? {
         return containers.filter({ (container: Container) in
-            return container.image!.hasPrefix(akeneoContainsImage) && !container.image!.contains(akeneoDoesNotContainsImage)
+            return container.networkSettings!.networks.exists(condition: { (element: ContainerNetwork) -> Bool in
+                return element.name!.hasSuffix("akeneo") || element.name!.hasSuffix("behat")
+            })
         })
     }
 }

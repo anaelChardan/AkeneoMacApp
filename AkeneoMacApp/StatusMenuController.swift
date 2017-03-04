@@ -43,69 +43,63 @@ class StatusMenuController: NSObject, NSApplicationDelegate {
     
     
     func analysePIMs() {
-        Akeneo.doOnRunningAkeneoContainers(
+        Akeneo.doOnAkeneoRelatedContainers(
             doOnRunningContainer : { (runningContainers: [Container]) in
                 
                 guard let allPimsInstalled = Akeneo.getAllPIMsInstalled() else {
-                    
+                    return
                 }
                 
-               
-                    let partition = ContainersUtils.partition(containers: runningContainers, folders: allPIMsInstalled)
-                    
-                    self.statusMenu.addTitle(title: "Running PIMs", color: NSColor.green)
-                    
-                    partition.0.forEach({ (container: Container) in
-                        self.addRunningItem(container: container)
-                    })
-                    
-                    self.statusMenu.addSeparator()
-                    self.statusMenu.addTitle(title: "Not running PIMs", color: NSColor.red)
-                    
-                    partition.1.forEach({ (container: String) in
-                        self.addNotRunningContainer(container: container)
-                    })
-                    
-                    self.statusMenu.addQuitItem()
+                let clusters: [PimEnvironmentCluster] = ClusterFactory.createClusters(containers: runningContainers, allPimsInstalled: allPimsInstalled)
                 
+                self.statusMenu.addTitle(title: "Running PIMs", color: NSColor.green)
                 
+                clusters.filter({ (cluster: PimEnvironmentCluster) -> Bool in
+                    return cluster.isRunning()
+                }).forEach({ (cluster: PimEnvironmentCluster) in
+                    self.addRunningItem(cluster: cluster)
+                })
+                    
+                self.statusMenu.addSeparator()
+                self.statusMenu.addTitle(title: "Not running PIMs", color: NSColor.red)
+                    
+                clusters.filter({ (cluster: PimEnvironmentCluster) -> Bool in
+                    return !cluster.isRunning()
+                }).forEach({ (cluster: PimEnvironmentCluster) in
+                    self.addNotRunningItem(cluster: cluster)
+                })
+                    
+                self.statusMenu.addQuitItem()
             }
         )
     }
     
-    func addRunningItem(container: Container) {
+    func addRunningItem(cluster: PimEnvironmentCluster) {
         addSubMenuAndItems(
-            subMenuTitle: "SubMenuRunning_\(container.description)",
-            itemTitle: container.description,
-            subItems: [
-                ("Open in browser", RunningOperation.openBrower(container: container)),
-                ("Initialize", nil),
-                ("Shutdown", nil)
-            ]
+            subMenuTitle: "SubMenuRunning_\(cluster.folder)",
+            cluster: cluster
         )
     }
     
-    func addNotRunningContainer(container: String) {
+    func addNotRunningItem(cluster: PimEnvironmentCluster) {
         addSubMenuAndItems(
-            subMenuTitle: "SubMenuNotRunning_\(container.description)",
-            itemTitle: container,
-            subItems: [("Boot", nil)]
+            subMenuTitle: "SubMenuNotRunning_\(cluster.folder)",
+            cluster: cluster
         )
-        notRunningContainers.append(container)
     }
     
-    func addSubMenuAndItems(subMenuTitle: String, itemTitle: String, subItems: [(title: String, representedObject: Any?)])
+    func addSubMenuAndItems(subMenuTitle: String, cluster: PimEnvironmentCluster)
     {
         statusMenu.addSubMenuAndItems(
             subMenuTitle: subMenuTitle,
-            subItems: subItems,
-            item: NSMenuItem(title: itemTitle, action: nil, keyEquivalent: NSString() as String),
+            subItems: cluster.getOperations(),
+            item: NSMenuItem(title: cluster.folder, action: nil, keyEquivalent: NSString() as String),
             target: self,
             action: #selector(self.handleRunningOperation(_:))
         )
     }
     
     func handleRunningOperation(_ sender: NSMenuItem) {
-        (sender.representedObject as! RunningOperation).process()
+        (sender.representedObject as! ClusterOperation).process()
     }
 }

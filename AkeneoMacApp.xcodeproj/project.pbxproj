@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0306259F1E157CE700660F58 /* ContainersUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0306259E1E157CE700660F58 /* ContainersUtils.swift */; };
-		030625A11E15A9F700660F58 /* AkeneoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030625A01E15A9F700660F58 /* AkeneoContainer.swift */; };
-		030625A61E15B37600660F58 /* RunningOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030625A51E15B37600660F58 /* RunningOperation.swift */; };
+		030625A61E15B37600660F58 /* ClusterOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030625A51E15B37600660F58 /* ClusterOperation.swift */; };
 		030F80B41E13DCC3000E1559 /* DockerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F80B31E13DCC3000E1559 /* DockerService.swift */; };
 		032A679E1E14690C006A1E4A /* Akeneo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032A679D1E14690C006A1E4A /* Akeneo.swift */; };
 		036F21631E153E6300109C0E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F21621E153E6300109C0E /* Utils.swift */; };
@@ -18,7 +17,7 @@
 		037BF54A1E129436002E9DE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 037BF5491E129436002E9DE4 /* Assets.xcassets */; };
 		037BF54D1E129436002E9DE4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037BF54B1E129436002E9DE4 /* MainMenu.xib */; };
 		037BF5551E12E5C5002E9DE4 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BF5541E12E5C5002E9DE4 /* StatusMenuController.swift */; };
-		03CA192C1E16C66E00C8BB2E /* DockerComposeCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA192B1E16C66E00C8BB2E /* DockerComposeCluster.swift */; };
+		03CA192C1E16C66E00C8BB2E /* PimEnvironmentCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA192B1E16C66E00C8BB2E /* PimEnvironmentCluster.swift */; };
 		03CA192E1E16D7F700C8BB2E /* ClusterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA192D1E16D7F700C8BB2E /* ClusterFactory.swift */; };
 		7CDD28351E1A60B400AE6D2E /* ContainerMount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDD28341E1A60B400AE6D2E /* ContainerMount.swift */; };
 		7CDD28371E1A613500AE6D2E /* ContainerPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDD28361E1A613500AE6D2E /* ContainerPort.swift */; };
@@ -32,8 +31,7 @@
 
 /* Begin PBXFileReference section */
 		0306259E1E157CE700660F58 /* ContainersUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainersUtils.swift; sourceTree = "<group>"; };
-		030625A01E15A9F700660F58 /* AkeneoContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AkeneoContainer.swift; sourceTree = "<group>"; };
-		030625A51E15B37600660F58 /* RunningOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningOperation.swift; sourceTree = "<group>"; };
+		030625A51E15B37600660F58 /* ClusterOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterOperation.swift; sourceTree = "<group>"; };
 		030F80B31E13DCC3000E1559 /* DockerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockerService.swift; sourceTree = "<group>"; };
 		032A679D1E14690C006A1E4A /* Akeneo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Akeneo.swift; sourceTree = "<group>"; };
 		036F21621E153E6300109C0E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -44,7 +42,7 @@
 		037BF54C1E129436002E9DE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		037BF54E1E129436002E9DE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		037BF5541E12E5C5002E9DE4 /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
-		03CA192B1E16C66E00C8BB2E /* DockerComposeCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockerComposeCluster.swift; sourceTree = "<group>"; };
+		03CA192B1E16C66E00C8BB2E /* PimEnvironmentCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PimEnvironmentCluster.swift; sourceTree = "<group>"; };
 		03CA192D1E16D7F700C8BB2E /* ClusterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterFactory.swift; sourceTree = "<group>"; };
 		6C5848434B80166BA5352866 /* Pods_AkeneoMacApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AkeneoMacApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CDD28341E1A60B400AE6D2E /* ContainerMount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerMount.swift; sourceTree = "<group>"; };
@@ -73,7 +71,7 @@
 		030625A21E15B24100660F58 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
-				030625A51E15B37600660F58 /* RunningOperation.swift */,
+				030625A51E15B37600660F58 /* ClusterOperation.swift */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -84,7 +82,7 @@
 				7CDD283A1E1A655500AE6D2E /* Models */,
 				030F80B31E13DCC3000E1559 /* DockerService.swift */,
 				0306259E1E157CE700660F58 /* ContainersUtils.swift */,
-				03CA192B1E16C66E00C8BB2E /* DockerComposeCluster.swift */,
+				03CA192B1E16C66E00C8BB2E /* PimEnvironmentCluster.swift */,
 				03CA192D1E16D7F700C8BB2E /* ClusterFactory.swift */,
 			);
 			name = Docker;
@@ -94,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				032A679D1E14690C006A1E4A /* Akeneo.swift */,
-				030625A01E15A9F700660F58 /* AkeneoContainer.swift */,
 			);
 			name = Akeneo;
 			sourceTree = "<group>";
@@ -303,14 +300,13 @@
 				7CE6AC251E1BA5D20017B2BA /* PlistManager.swift in Sources */,
 				036F21651E1547C800109C0E /* Container.swift in Sources */,
 				7CDD28391E1A64FB00AE6D2E /* ContainerNetworkSettings.swift in Sources */,
-				03CA192C1E16C66E00C8BB2E /* DockerComposeCluster.swift in Sources */,
+				03CA192C1E16C66E00C8BB2E /* PimEnvironmentCluster.swift in Sources */,
 				7CDD283C1E1A65AE00AE6D2E /* ContainerNetwork.swift in Sources */,
 				7CE6AC2D1E1BE1350017B2BA /* SettingsManager.swift in Sources */,
-				030625A61E15B37600660F58 /* RunningOperation.swift in Sources */,
+				030625A61E15B37600660F58 /* ClusterOperation.swift in Sources */,
 				030F80B41E13DCC3000E1559 /* DockerService.swift in Sources */,
 				037BF5551E12E5C5002E9DE4 /* StatusMenuController.swift in Sources */,
 				032A679E1E14690C006A1E4A /* Akeneo.swift in Sources */,
-				030625A11E15A9F700660F58 /* AkeneoContainer.swift in Sources */,
 				037BF5481E129436002E9DE4 /* AppDelegate.swift in Sources */,
 				03CA192E1E16D7F700C8BB2E /* ClusterFactory.swift in Sources */,
 			);
