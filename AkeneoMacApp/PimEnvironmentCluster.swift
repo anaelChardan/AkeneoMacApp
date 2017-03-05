@@ -24,17 +24,33 @@ class PimEnvironmentCluster: NSObject {
         
         if (!containersAkeneoNetwork.isEmpty) {
             operations.append(("Open in Browser", ClusterOperation.openInBrowser(cluster: self)))
+            operations.append(("PIM Initialize", ClusterOperation.pimInitialize(cluster: self)))
         }
         
         if (!containersBehatNetwork.isEmpty) {
             operations.append(("Open behat in browser", ClusterOperation.openBehatBrowser(cluster: self)))
+            operations.append(("Pim Initialize (Behat)", ClusterOperation.pimInitializeBehat(cluster: self)))
         }
         
+        operations.append(("Shutdown", ClusterOperation.shutdown(cluster: self)))
+
         return operations
     }
     
     func boot() {
-        print("BOOT");
+        let path = self.getDockerComposeFilePath()
+        DockerConsoleService.dockerComposeExecUpDaemon(path: path, addText: {
+            (line: String) in
+            print(line)
+        })
+    }
+    
+    func shutdown() {
+        let path = self.getDockerComposeFilePath()
+        DockerConsoleService.dockerComposeExecStop(path: path, addText: {
+            (line: String) in
+            print(line)
+        })
     }
     
     func open() {
@@ -43,28 +59,46 @@ class PimEnvironmentCluster: NSObject {
         NSWorkspace.shared().open(URL(string: "http://localhost:\(akeneoContainer.getPublicPort(privatePort: 80)!)")!)
     }
     
-    func getAkeneoContainer() -> Container {
-        return containersAkeneoNetwork.filter { (container: Container) -> Bool in
-            return container.image!.contains(SettingsManager.get(key: "akeneoContainsImage")! as! String)
-        }[0]
-    }
-    
     func openBehat() {
-//        self.container.getMainNetwork()
+        let akeneoContainer = getAkeneoBehatContainer()
+        
+        NSWorkspace.shared().open(URL(string: "http://localhost:\(akeneoContainer.getPublicPort(privatePort: 80)!)")!)
     }
     
     func initialize() {
-        print("initalize")
+        let akeneoContainer = getAkeneoContainer()
+        DockerConsoleService.dockerExec(containerId: akeneoContainer.id!, command: "pim-initialize", addText: {
+            (line: String) in
+                print(line)
+        })
     }
     
     func initializeBehat() {
-        print("initalize behat")
+        let akeneoContainer = getAkeneoBehatContainer()
+        
+        DockerConsoleService.dockerExec(containerId: akeneoContainer.id!, command: "pim-initialize", addText: {
+            (line: String) in
+            print(line)
+        })
     }
     
-    func shutdown() {
-        print("shutdown")
+    private func getAkeneoContainer() -> Container {
+        return containersAkeneoNetwork.filter { (container: Container) -> Bool in
+            return container.image!.contains(SettingsManager.get(key: "akeneoContainsImage")! as! String)
+            }[0]
     }
-
     
+    private func getAkeneoBehatContainer() -> Container {
+        return containersBehatNetwork.filter { (container: Container) -> Bool in
+            return container.image!.contains(SettingsManager.get(key: "akeneoContainsImage")! as! String)
+            }[0]
+    }
     
+    private func getDockerComposeFilePath() -> String {
+        return "\(self.getFullPath())/\(SettingsManager.get(key: "dockerComposeFile")!)"
+    }
+    
+    private func getFullPath() -> String {
+        return "\(SettingsManager.get(key: "akeneoPimsPath")!)/\(self.folder)"
+    }
 }

@@ -37,15 +37,12 @@ class StatusMenuController: NSObject, NSApplicationDelegate {
     
     func clear() {
         statusMenu.removeAllItems()
-        runningContainers.removeAll()
-        notRunningContainers.removeAll()
     }
     
     
     func analysePIMs() {
         Akeneo.doOnAkeneoRelatedContainers(
             doOnRunningContainer : { (runningContainers: [Container]) in
-                
                 guard let allPimsInstalled = Akeneo.getAllPIMsInstalled() else {
                     return
                 }

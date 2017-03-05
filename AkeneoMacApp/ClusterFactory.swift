@@ -18,6 +18,10 @@ class ClusterFactory: NSObject {
             PimEnvironmentCluster(folder: element, containersAkeneo: [], containersBehat: [])
         }
         
+        if (containers.isEmpty) {
+            return clusterNotRunning
+        }
+        
         let containersClusters: [[Container]] = containers.groupBy(groupMethod: { (element: Container) -> String in
             element.getMainNetwork()!.components(separatedBy: "_")[0]
         })
@@ -32,6 +36,7 @@ class ClusterFactory: NSObject {
             let behatContainers = containers.filter({ (container: Container) -> Bool in
                 return container.getMainNetwork()!.contains("behat")
             })
+            
             return PimEnvironmentCluster(folder: self.getFolderByCluster(containers: containers), containersAkeneo: akeneoContainers, containersBehat: behatContainers)
         }
         

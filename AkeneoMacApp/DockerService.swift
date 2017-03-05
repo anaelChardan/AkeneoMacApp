@@ -12,15 +12,14 @@ import AlamofireJsonToObjects
 import EVReflection
 
 class DockerService: NSObject {
-    
     static func fetchContainers(success: (([Container]) -> ())? = nil) {
         reachDocker(endpoint: "containers/json", success: success)
     }
     
-    static func reachDocker(endpoint: String, success: (([Container]) -> ())? = nil) {
+    static func reachDocker(endpoint: String, method: HTTPMethod = .get, parameters: Parameters? = nil, success: (([Container]) -> ())? = nil) {
         if let uri = buildURI() {
             Alamofire
-                .request("\(uri)\(endpoint)")
+                .request("\(uri)\(endpoint)", method: method, parameters: parameters)
                 .validate()
                 .responseArray { (response: DataResponse<[Container]>) in
                     if let containers = response.result.value {

@@ -14,7 +14,13 @@ enum ClusterOperation {
     //TODO To do that, must create a cluster containing the behat container (so by folder)
     case openBehatBrowser(cluster: PimEnvironmentCluster)
     
+    case pimInitialize(cluster: PimEnvironmentCluster)
+    
+    case pimInitializeBehat(cluster: PimEnvironmentCluster)
+    
     case boot(cluster: PimEnvironmentCluster)
+    
+    case shutdown(cluster: PimEnvironmentCluster)
     
     func process() {
         switch self {
@@ -24,7 +30,12 @@ enum ClusterOperation {
                 cluster.openBehat()
             case let .boot(cluster):
                 cluster.boot()
-            
+            case let .pimInitialize(cluster):
+                cluster.initialize()
+            case let .shutdown(cluster):
+                cluster.shutdown()
+            case let.pimInitializeBehat(cluster):
+                cluster.initializeBehat()
         }
     }
 }

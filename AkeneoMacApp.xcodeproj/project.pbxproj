@@ -19,6 +19,8 @@
 		037BF5551E12E5C5002E9DE4 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037BF5541E12E5C5002E9DE4 /* StatusMenuController.swift */; };
 		03CA192C1E16C66E00C8BB2E /* PimEnvironmentCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA192B1E16C66E00C8BB2E /* PimEnvironmentCluster.swift */; };
 		03CA192E1E16D7F700C8BB2E /* ClusterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA192D1E16D7F700C8BB2E /* ClusterFactory.swift */; };
+		131AE6F61E6C4651009F2DCD /* ConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AE6F51E6C4651009F2DCD /* ConsoleManager.swift */; };
+		131AE6F81E6C530F009F2DCD /* DockerConsoleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AE6F71E6C530F009F2DCD /* DockerConsoleService.swift */; };
 		7CDD28351E1A60B400AE6D2E /* ContainerMount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDD28341E1A60B400AE6D2E /* ContainerMount.swift */; };
 		7CDD28371E1A613500AE6D2E /* ContainerPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDD28361E1A613500AE6D2E /* ContainerPort.swift */; };
 		7CDD28391E1A64FB00AE6D2E /* ContainerNetworkSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDD28381E1A64FB00AE6D2E /* ContainerNetworkSettings.swift */; };
@@ -44,6 +46,8 @@
 		037BF5541E12E5C5002E9DE4 /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
 		03CA192B1E16C66E00C8BB2E /* PimEnvironmentCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PimEnvironmentCluster.swift; sourceTree = "<group>"; };
 		03CA192D1E16D7F700C8BB2E /* ClusterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterFactory.swift; sourceTree = "<group>"; };
+		131AE6F51E6C4651009F2DCD /* ConsoleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleManager.swift; sourceTree = "<group>"; };
+		131AE6F71E6C530F009F2DCD /* DockerConsoleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockerConsoleService.swift; sourceTree = "<group>"; };
 		6C5848434B80166BA5352866 /* Pods_AkeneoMacApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AkeneoMacApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CDD28341E1A60B400AE6D2E /* ContainerMount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerMount.swift; sourceTree = "<group>"; };
 		7CDD28361E1A613500AE6D2E /* ContainerPort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerPort.swift; sourceTree = "<group>"; };
@@ -79,6 +83,7 @@
 		030F80B21E13DCA2000E1559 /* Docker */ = {
 			isa = PBXGroup;
 			children = (
+				131AE6F71E6C530F009F2DCD /* DockerConsoleService.swift */,
 				7CDD283A1E1A655500AE6D2E /* Models */,
 				030F80B31E13DCC3000E1559 /* DockerService.swift */,
 				0306259E1E157CE700660F58 /* ContainersUtils.swift */,
@@ -127,6 +132,7 @@
 		037BF5461E129436002E9DE4 /* AkeneoMacApp */ = {
 			isa = PBXGroup;
 			children = (
+				131AE6F41E6C45E1009F2DCD /* ConsoleManager */,
 				030625A21E15B24100660F58 /* Operations */,
 				036F21611E153E5100109C0E /* Utils */,
 				032A679C1E1468F2006A1E4A /* Akeneo */,
@@ -139,6 +145,14 @@
 				7CE6AC261E1BAA8A0017B2BA /* Settings.plist */,
 			);
 			path = AkeneoMacApp;
+			sourceTree = "<group>";
+		};
+		131AE6F41E6C45E1009F2DCD /* ConsoleManager */ = {
+			isa = PBXGroup;
+			children = (
+				131AE6F51E6C4651009F2DCD /* ConsoleManager.swift */,
+			);
+			name = ConsoleManager;
 			sourceTree = "<group>";
 		};
 		7CDD283A1E1A655500AE6D2E /* Models */ = {
@@ -306,8 +320,10 @@
 				030625A61E15B37600660F58 /* ClusterOperation.swift in Sources */,
 				030F80B41E13DCC3000E1559 /* DockerService.swift in Sources */,
 				037BF5551E12E5C5002E9DE4 /* StatusMenuController.swift in Sources */,
+				131AE6F81E6C530F009F2DCD /* DockerConsoleService.swift in Sources */,
 				032A679E1E14690C006A1E4A /* Akeneo.swift in Sources */,
 				037BF5481E129436002E9DE4 /* AppDelegate.swift in Sources */,
+				131AE6F61E6C4651009F2DCD /* ConsoleManager.swift in Sources */,
 				03CA192E1E16D7F700C8BB2E /* ClusterFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

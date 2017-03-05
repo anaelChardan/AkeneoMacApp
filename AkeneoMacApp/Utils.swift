@@ -38,10 +38,6 @@ extension Array where Element: Equatable {
     }
     
     func groupBy<G: Comparable>(groupMethod: @escaping (_ element: Element) -> G) -> [[Element]] {
-        if (self.isEmpty) {
-            return [[]]
-        }
-        
         var usedValues = [Element]()
         var currentGroup = [Element]()
         var result = [[Element]]()
