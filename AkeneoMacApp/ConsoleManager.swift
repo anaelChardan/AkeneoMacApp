@@ -33,6 +33,14 @@ class ConsoleManager: NSObject {
         }
         
         task.launch()
+        
+        task.terminationHandler = { (process: Process) in
+            if (process.isRunning) {
+                print("IS RUNNNING")
+            } else {
+                print("FINISH MAGGLE")
+            }
+        }
     }
     
 }

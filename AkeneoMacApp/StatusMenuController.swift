@@ -21,7 +21,6 @@ class StatusMenuController: NSObject, NSApplicationDelegate {
         let icon = NSImage(named: "StatusBarButtonImage")
         statusItem.image = icon
         statusItem.menu = statusMenu
-        
         fillMenu()
     }
     

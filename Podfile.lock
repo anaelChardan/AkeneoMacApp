@@ -4,15 +4,18 @@ PODS:
     - Alamofire
     - EVReflection
   - EVReflection (3.4.2)
+  - PureLayout (3.0.2)
 
 DEPENDENCIES:
   - AlamofireJsonToObjects (~> 2.4)
+  - PureLayout
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   AlamofireJsonToObjects: 6fbb76d3abe12bcdc1f1af51a52ebbc8dfe3746c
   EVReflection: 3b24ff86d9e630fcfb71a6927e02ce67256595b8
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
 
-PODFILE CHECKSUM: 9e56b577c89643e65c2d3a532582c92357990610
+PODFILE CHECKSUM: 25bef484c2cf880f4624374a76d6c63b8a6344f1
 
 COCOAPODS: 1.2.0

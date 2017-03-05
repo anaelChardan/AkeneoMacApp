@@ -4,4 +4,5 @@ target 'AkeneoMacApp' do
   use_frameworks!
 
   pod 'AlamofireJsonToObjects', '~> 2.4'
+  pod 'PureLayout'
 end
