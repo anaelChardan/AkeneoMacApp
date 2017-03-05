@@ -7,14 +7,17 @@
 //
 
 import Cocoa
+import Dollar
 
 //TODO ALL
 class ClusterFactory: NSObject {
     static func createClusters(containers: [Container], allPimsInstalled: [String]) -> [PimEnvironmentCluster]
     {
-        let partition = ContainersUtils.partition(containers: containers, folders: allPimsInstalled)
-        
-        let clusterNotRunning: [PimEnvironmentCluster] = partition.1.map { (element: String) -> PimEnvironmentCluster in
+        let clusterNotRunning: [PimEnvironmentCluster] = allPimsInstalled.filter({ (currentPath: String) -> Bool in
+            return !containers.contains(where: { (runningContainer: Container) -> Bool in
+                return runningContainer.pimFolder == currentPath
+            })
+        }).map { (element: String) -> PimEnvironmentCluster in
             PimEnvironmentCluster(folder: element, containersAkeneo: [], containersBehat: [])
         }
         
@@ -22,23 +25,23 @@ class ClusterFactory: NSObject {
             return clusterNotRunning
         }
         
-        let containersClusters: [[Container]] = containers.groupBy(groupMethod: { (element: Container) -> String in
+        let runningClusters: [PimEnvironmentCluster] = $.groupBy(containers) { (element: Container) -> String in
             element.getMainNetwork()!.components(separatedBy: "_")[0]
-        })
-        
-        let runningClusters: [PimEnvironmentCluster] = containersClusters.map { (containers: [Container]) -> PimEnvironmentCluster in
-            
-            let akeneoContainers = containers.filter({ (container: Container) -> Bool in
-                return container.getMainNetwork()!.contains("akeneo")
-
-            })
-            
-            let behatContainers = containers.filter({ (container: Container) -> Bool in
-                return container.getMainNetwork()!.contains("behat")
-            })
-            
-            return PimEnvironmentCluster(folder: self.getFolderByCluster(containers: containers), containersAkeneo: akeneoContainers, containersBehat: behatContainers)
+            }.values.map { (containers: [Container]) -> PimEnvironmentCluster in
+                
+                let akeneoContainers = containers.filter({ (container: Container) -> Bool in
+                    return container.getMainNetwork()!.contains("akeneo")
+                    
+                })
+                
+                let behatContainers = containers.filter({ (container: Container) -> Bool in
+                    return container.getMainNetwork()!.contains("behat")
+                })
+                
+                return PimEnvironmentCluster(folder: self.getFolderByCluster(containers: containers), containersAkeneo: akeneoContainers, containersBehat: behatContainers)
         }
+        
+        
         
         return clusterNotRunning + runningClusters
         

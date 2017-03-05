@@ -5,4 +5,5 @@ target 'AkeneoMacApp' do
 
   pod 'AlamofireJsonToObjects', '~> 2.4'
   pod 'PureLayout'
+  pod 'Dollar'
 end

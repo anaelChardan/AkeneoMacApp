@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Dollar
 
 class Akeneo: NSObject {
     static func doOnAkeneoRelatedContainers(doOnRunningContainer: @escaping (([Container]) -> ())) {
@@ -24,15 +25,15 @@ class Akeneo: NSObject {
         
         var fileList = try! FileManager.default.contentsOfDirectory(atPath: akeneoPimsPath)
         
-        return fileList.remove(object: ".DS_Store")
+        return $.remove(fileList, value: ".DS_Store")
     }
     
     
     private static func filterAkeneoWorkingContainer(containers: [Container]) -> [Container]? {
         return containers.filter({ (container: Container) in
-            return container.networkSettings!.networks.exists(condition: { (element: ContainerNetwork) -> Bool in
+            return $.find(container.networkSettings!.networks, callback: { (element: ContainerNetwork) -> Bool in
                 return element.name!.hasSuffix("akeneo") || element.name!.hasSuffix("behat")
-            })
+            }) != nil
         })
     }
 }

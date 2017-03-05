@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0306259F1E157CE700660F58 /* ContainersUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0306259E1E157CE700660F58 /* ContainersUtils.swift */; };
 		030625A61E15B37600660F58 /* ClusterOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030625A51E15B37600660F58 /* ClusterOperation.swift */; };
 		030F80B41E13DCC3000E1559 /* DockerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F80B31E13DCC3000E1559 /* DockerService.swift */; };
 		032A679E1E14690C006A1E4A /* Akeneo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032A679D1E14690C006A1E4A /* Akeneo.swift */; };
@@ -32,7 +31,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0306259E1E157CE700660F58 /* ContainersUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainersUtils.swift; sourceTree = "<group>"; };
 		030625A51E15B37600660F58 /* ClusterOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterOperation.swift; sourceTree = "<group>"; };
 		030F80B31E13DCC3000E1559 /* DockerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockerService.swift; sourceTree = "<group>"; };
 		032A679D1E14690C006A1E4A /* Akeneo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Akeneo.swift; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 				131AE6F71E6C530F009F2DCD /* DockerConsoleService.swift */,
 				7CDD283A1E1A655500AE6D2E /* Models */,
 				030F80B31E13DCC3000E1559 /* DockerService.swift */,
-				0306259E1E157CE700660F58 /* ContainersUtils.swift */,
 				03CA192B1E16C66E00C8BB2E /* PimEnvironmentCluster.swift */,
 				03CA192D1E16D7F700C8BB2E /* ClusterFactory.swift */,
 			);
@@ -315,7 +312,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0306259F1E157CE700660F58 /* ContainersUtils.swift in Sources */,
 				7CDD28351E1A60B400AE6D2E /* ContainerMount.swift in Sources */,
 				036F21631E153E6300109C0E /* Utils.swift in Sources */,
 				7CDD28371E1A613500AE6D2E /* ContainerPort.swift in Sources */,

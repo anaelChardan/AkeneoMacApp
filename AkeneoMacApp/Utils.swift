@@ -9,65 +9,6 @@
 import Cocoa
 import Alamofire
 
-extension Array where Element: Equatable {
-    mutating func remove(object: Element) -> Array {
-        if let index = index(of: object) {
-            remove(at: index)
-        }
-        
-        return self
-    }
-    
-    func exists(condition: (_ element: Element) -> Bool) -> Bool {
-        for item in self {
-            if condition(item) {
-                return true
-            }
-        }
-        return false
-    }
-    
-    func unique() -> [Element] {
-        var uniqueValues: [Element] = []
-        forEach { item in
-            if !uniqueValues.contains(item) {
-                uniqueValues += [item]
-            }
-        }
-        return uniqueValues
-    }
-    
-    func groupBy<G: Comparable>(groupMethod: @escaping (_ element: Element) -> G) -> [[Element]] {
-        var usedValues = [Element]()
-        var currentGroup = [Element]()
-        var result = [[Element]]()
-        
-        self.forEach { (element: Element) in
-            if (!usedValues.contains(element)) {
-                let currentClause = groupMethod(element)
-                usedValues.append(element)
-                currentGroup.append(element)
-                
-                self.forEach({ (element2: Element) in
-                    if (!usedValues.contains(element2)) {
-                        if (groupMethod(element2) == currentClause) {
-                            currentGroup.append(element2)
-                            usedValues.append(element2)
-                        }
-                    }
-                })
-                
-                result.append(currentGroup)
-                currentGroup = [Element]()
-            }
-            
-        }
-        
-        return result
-    }
-    
-}
-
 extension NSMenu {
     func addSeparator() {
         self.addItem(NSMenuItem.separator())
