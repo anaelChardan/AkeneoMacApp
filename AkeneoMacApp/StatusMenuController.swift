@@ -9,7 +9,7 @@
 import Cocoa
 import Alamofire
 
-class StatusMenuController: NSObject, NSApplicationDelegate {
+class StatusMenuController: NSObject, NSApplicationDelegate, NSMenuDelegate {
     @IBOutlet weak var statusMenu: NSMenu!
     
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
@@ -20,7 +20,9 @@ class StatusMenuController: NSObject, NSApplicationDelegate {
     override func awakeFromNib() {
         let icon = NSImage(named: "StatusBarButtonImage")
         statusItem.image = icon
+        statusMenu.delegate = self
         statusItem.menu = statusMenu
+        
         fillMenu()
     }
     
@@ -28,10 +30,11 @@ class StatusMenuController: NSObject, NSApplicationDelegate {
         clear()
         
         statusMenu.addTitle(title: "Akeneo Mac", color: NSColor.purple, size: 20)
+        statusMenu.addItem(NSMenuItem(title: "Install a new PIM", action: #selector(NSApplication.shared().terminate), keyEquivalent: "q"))
         statusMenu.addSeparator()
         
         analysePIMs()
-    }
+            }
     
     
     func clear() {
@@ -64,7 +67,7 @@ class StatusMenuController: NSObject, NSApplicationDelegate {
                 }).forEach({ (cluster: PimEnvironmentCluster) in
                     self.addNotRunningItem(cluster: cluster)
                 })
-                    
+                
                 self.statusMenu.addQuitItem()
             }
         )
@@ -97,5 +100,11 @@ class StatusMenuController: NSObject, NSApplicationDelegate {
     
     func handleRunningOperation(_ sender: NSMenuItem) {
         (sender.representedObject as! ClusterOperation).process()
+    }
+    
+    // MARK: - NSMenuDelegate
+    
+    func menuDidClose(_ menu: NSMenu) {
+        fillMenu()
     }
 }

@@ -129,7 +129,6 @@
 		037BF5461E129436002E9DE4 /* AkeneoMacApp */ = {
 			isa = PBXGroup;
 			children = (
-				1348533F1E6C8062001C70CF /* View */,
 				131AE6F41E6C45E1009F2DCD /* ConsoleManager */,
 				030625A21E15B24100660F58 /* Operations */,
 				036F21611E153E5100109C0E /* Utils */,
@@ -151,13 +150,6 @@
 				131AE6F51E6C4651009F2DCD /* ConsoleManager.swift */,
 			);
 			name = ConsoleManager;
-			sourceTree = "<group>";
-		};
-		1348533F1E6C8062001C70CF /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = View;
 			sourceTree = "<group>";
 		};
 		7CDD283A1E1A655500AE6D2E /* Models */ = {
